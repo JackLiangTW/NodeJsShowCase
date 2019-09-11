@@ -4,10 +4,6 @@
 
 
 
-## 知識王Herku(SocketTwo)
-> <a href="https://group-answer-game.herokuapp.com/" target="_blank">https://group-answer-game.herokuapp.com/</a>
-
-
 
 
 # Crawler
@@ -50,6 +46,7 @@ NodeJS socket.IO 試做 知識王及時對戰遊戲
 ### back.html
 > #### 後台登入/分數/隊伍分數/剔除玩家頁面
 * `去後台`: 執行網址/goback
-
+## 知識王Herku(SocketTwo)
+> <a href="https://group-answer-game.herokuapp.com/" target="_blank">https://group-answer-game.herokuapp.com/</a>
 
 
