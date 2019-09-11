@@ -1,60 +1,45 @@
-# NodeJsShowCase
-Node.js show case and examples
-# 2017 WildAid 野生救援
-![author](https://img.shields.io/badge/front--end-Junxiang-yellow.svg)
-![author](https://img.shields.io/badge/back--end-San-blue.svg)
+# Node.js show case and examples
+![author](https://img.shields.io/badge/front--end-JackLiang-yellow.svg)
+![author](https://img.shields.io/badge/back--end-JackLiang-blue.svg)
 
 
-WildAid 野生救援 - 無翅聯盟
 
-
-## 正式站 尚未上線
-> <a href="https://www.wildaidtaiwan.org/" target="_blank">https://www.wildaidtaiwan.org/</a>
-
-## 測試站 
-> <a href="https://wildaid.webgene.com.tw/" target="_blank">https://wildaid.webgene.com.tw/</a>
-
-
-## Source List
-
-項目                                       | folder
-------------------------------------------|-----------
-前端 source                  			  | [/ front-end](http://git.webgene.tw/webgene/WildAid/tree/master/Site)
+## 知識王Herku(SocketTwo)
+> <a href="https://group-answer-game.herokuapp.com/" target="_blank">https://group-answer-game.herokuapp.com/</a>
 
 
 
 
-# 魚翅聯盟登入改版 API
+# Crawler
+NodeJS 爬蟲/動態爬蟲/IG載圖/合成圖片
+### app.js
+> #### 爬蟲/動態爬蟲/IG載圖
+### synimage.js.js
+> #### 合成圖片
 
-# 1.新增使用者宣言
+# ejs_todo
+NodeJS ejs模板 todo_list教學試做
+
+# EJSlogin
+NodeJS ejs模板 FB登入試做/資料庫/API傳遞
+
+# face_tracking
+NodeJS 攝影機/圖片 臉部辨識/追蹤
+### views
+> #### 修改與紀錄 套件部分API使用方式
+### sever.js
+> #### 修改測試時的 渲染頁面
+
+# FBmessagerRobot
+NodeJS FBmessanger聊天機器人
+
+# SocketTwo
+NodeJS socket.IO 試做 知識王及時對戰遊戲
+### index.html
+> #### 玩家/使用者頁面
+### back.html
+> #### 後台登入/分數/隊伍分數/剔除玩家頁面
+* `去後台`: 執行網址/goback
 
 
-送出使用者宣言
 
-
-### API
-> #### api/send_user
-
-### Request Parameters
-
-> **POST** 
-
-Param    |    Type  | Description  |Option 
----------|--------|--------------|-----
-fbid     | *string* | Facebook ID    | M |
-name     | *string* | user name        | M |
-logo_pic    | *string* |  圖片網址      | M |
-email       | *string* | user email    | M |
-caption   | *string* | 宣言內容 | M |
-
-fbid格式欄位可以給  user_00000000 (亂數8碼以上)  
-
-
-### Response JSON
-* `status`: 回傳狀態(success = 200, fbid  或name沒寫 = 130, fbid重複 = 110)
-
-```json
-{
-  "status": 200
-}
-```
