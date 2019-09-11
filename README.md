@@ -48,5 +48,6 @@ NodeJS socket.IO 試做 知識王及時對戰遊戲
 * `去後台`: 執行網址/goback
 ## 知識王Herku(SocketTwo)
 > <a href="https://group-answer-game.herokuapp.com/" target="_blank">https://group-answer-game.herokuapp.com/</a>
+> <a href="https://group-answer-game.herokuapp.com/goback" target="_blank">herkou去後台</a>
 
 
