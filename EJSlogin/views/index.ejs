@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+  </head>
+  <style>
+    table{width: 100%;}
+    tr{
+      display: block;
+      color: brown;
+      width: 100%;
+      position: relative;
+    }
+    tr td,tr th{
+      width: 33%;
+      border: 1px solid #000;
+      padding: 10px 20px;
+    }
+    tr td:nth-child(1){color: cornflowerblue;}
+    tr td:nth-child(2){color: darkcyan;}
+    tr td:nth-child(3){color:darkslateblue;}
+    .onlines{margin-top: 50px;background-color: coral;}
+  </style>
+  <body>
+    <div class="container">
+      <h2>登入</h2>
+      <h1><%= title %></h1>
+      <form method="POST" action="/login">
+          <input class="form-control" type="text" name="name" placeholder="名字">
+          <input class="form-control" type="text" name="user" placeholder="帳號">
+          <input class="form-control" type="text" name="password" placeholder="密碼">
+          <button class="">登入</button>
+      </form>
+      <button id="FB_login">facebook登入</button>
+      <button id="Get_api">Get API</button>
+    </div>
+    <div class="container">
+      <table class="table table-hover">
+          <tr>
+              <th>名字</th>
+              <th>帳號</th>
+              <th>密碼</th>
+          </tr>
+      <% for(var i=0;i<accounts.length;i++) { %>
+        <tr>
+            <td><%= accounts[i].name %></td>
+            <td><%= accounts[i].user %></td>
+            <td><%= accounts[i].password %></td>          
+        </tr>
+      <% } %>
+      </table>
+
+    </div>
+<script>
+(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/zh_TW/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+    
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1173448829483241',
+            xfbml: true,
+            version: 'v3.1',
+        });
+    };
+    
+}(document, 'script', 'facebook-jssdk'));
+$(document).ready(function(){
+  $('#FB_login').on('click',function(e){
+      e.preventDefault;
+      loggin();
+  });
+  $('#Get_api').on('click',function(e){
+      e.preventDefault;
+      getAlls();
+  });
+
+  
+  function loggin(){
+    
+    FB.login(
+      function (response) {
+          if (response.status === 'connected') {
+              console.log('login success:', response);
+              FB.logout();
+              FB.api(
+                      '/me',
+                      'GET', {
+                              "fields": "id,name,email"
+                              },
+                              function (response) {
+                                  console.log('API:', response);
+                                  var fbid=response["id"];
+                                  var fbname=response["name"];
+                                  SendIDlogin(fbid,fbname);
+                                  //$("body").append("<img src='https://graph.facebook.com/"+fbid+"/picture?type=large'>");     
+                              }
+                      );
+          } else {
+              console.log('login error:', response);              
+          }          
+      }
+    )
+  }
+  function SendIDlogin(ids,names){
+    $.ajax({
+      type: 'POST',
+      url: '/fblogin',
+      dataType: 'json',
+      data:{id:ids, name:names},
+      success: function(e){
+        console.log("Success");
+        console.log(e);
+        location.reload();
+      },
+      error:function(e){
+        console.log("error");
+        console.log(e);
+      },
+      //dataType: dataType
+    });
+  }
+  
+  function getAlls(){
+    console.log("HA");
+    $.ajax({
+      type: 'POST',
+      url: '/getall',
+      // dataType: 'json',
+      // data:{id:ids, name:names},
+      success: function(e){
+        $('#FB_login').css('display','none');
+        console.log(e);
+      },
+      error:function(e){
+        alert('此帳號現在登入中');
+        console.log(e);
+      },
+      //dataType: dataType
+    });
+  }
+
+});
+</script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+1.node.js
+	npm init (創建新的自己的npm, dependencies需要 body-parser/config/express/request)
+ 	
+	(和app.js同一層)創建config資料夾 並在裡面新增default.json
+	//--https://drive.google.com/drive/u/4/folders/1uTQOz9eIuo0QFEUIcz-7b0COssA5HpzH(default.json)
+
+	app.js	詳細放在雲端
+	
+2.ngrok
+	下載ngrok
+	執行.exe
+	(要開2個Cmder 1個執行app.js/另一個執行ngrok)
+	之後執行用Cmder -->  到ngrok.exe同路徑位置(桌面比較好) -->(Cmder輸入)ngrok http 4000 (4000是app.js裡面設定的port)
+
+3.FaceBook平台
+	FB developers -->新增應用程式
+	產品+ --> messenger設定
+	產生權杖(要有粉絲專業,沒有就建立一個)權杖會貼到config的default.json的pageAcessToken中
+	Messenger 的應用程式審查(要上架要審核 pages_messaging一定要)
+
+	Webhooks 中間左上角選擇pages --> Edit Subscription -->回乎網址 (ngrok產生的https..)加上(/webhook)
+	--> 驗證權杖 default.json的自己設定的Token --> 驗證並處存(Cmder的console應該會出現連上/webhook)
+
+	(當ngrok重新啟動 https網址也會變 ,所以Webhooks的Edit Subscriptio中的2個都要重新設定)
+
+	

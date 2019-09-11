@@ -1,0 +1,3 @@
+Transcode 影片畫壓縮畫質  所以非必要不要transcode
+
+https://forum.unity.com/threads/unity-video-player-lose-video-quality-anyway-to-avoid-it.499848/

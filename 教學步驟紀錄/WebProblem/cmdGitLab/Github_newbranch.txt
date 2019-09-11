@@ -1,0 +1,24 @@
+創新branch並且push上去
+
+github:
+
+1.創新資料夾 -> cd到底下 -> git clone httpsxxxx(clone github上原本的檔案)
+2.cd到新clone的資料夾中
+3.把更新檔案取代過去 clone的舊檔案
+
+4.git add --all 加入追蹤
+
+5.git checkout --orphan version2(新branch名字)
+
+6.git commit -a -m "init2" (解釋)
+
+7.git push origin version2 (新branch名字)
+
+8.輸入帳密
+
+
+
+
+
+
+

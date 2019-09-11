@@ -1,0 +1,17 @@
+webgl檔案要用http網址開啟(放在伺服器端)  然後要去chrome等瀏覽器解除webgl的限制
+https://superuser.com/questions/836832/how-can-i-enable-webgl-in-my-browser
+
+
+(Uncaught SyntaxError: Unexpected token < )[解決方法]
+https://answers.unity.com/questions/1397472/webgl-build-when-uploaded-gives-me-this-error-unca.html
+創一個名為" web.config "的檔案(text就好)  存到和index同一個資料夾(index旁邊)
+
+到資料夾點擊開啟  然後貼上下面的在處存
+<configuration>
+        <system.webServer>
+           <staticContent>
+       
+              <mimeMap fileExtension=".unityweb" mimeType ="TYPE/SUBTYPE" />
+           </staticContent>
+        </system.webServer> 
+     </configuration>

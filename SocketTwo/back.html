@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>知識王後台</title>
+    <script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/scroll.css">
+</head>
+<style>
+    .sc_dot{
+        border-radius: 0;
+        padding: 10px 20px;
+        width: auto;
+        height: auto;
+    }
+    .says{
+        font-size: 24px;
+    }
+    .says>span:nth-child(1){
+        color: red;
+    }
+    .a1 .says>span:nth-child(2),.a3 .says>span:nth-child(2),.a2 .says>span:nth-child(3){
+        color:blue;
+    }
+    #emiter{margin-top: 15px;font-size: 18px;}
+    input{width: 320px;height: 30px;font-size: 28px;vertical-align: middle;}
+    button{padding: 8px 20px;letter-spacing: 2px;vertical-align: middle;}
+
+    .part_out{position:relative;width:100%;}
+    .outs{text-align:center;width:33%;display: inline-block;height: 39vh;overflow: auto;border: 1px solid #000;}
+    .outs>p{color:#fff;background-color:gray;margin:0;border-top:none;min-height: 50px;font-size: 24px;
+    /*text-align: center;*/
+    text-align: right;padding-right: 26%;
+    }
+    .outs>p.titles{background-color:lightseagreen;font-size: 28px;font-weight: bold;letter-spacing: 1.8px;text-align: left;padding:15px 0;}
+    .outs>p.shows{display:block;}
+    .outs>p.hiddes{display:none;border-bottom: 1px solid #fff;}
+    .outs>p.hiddes.selected{background-color: chocolate;}
+    .outs>p.hiddes.shows{display:block;}
+    .outs>p.shows>span{display: inline-block;margin-left: 20px;padding-top: 10px;}
+    .bk{display: block;text-align: center;}
+    .fs20{font-size: 20px;line-height: 32.5px;}
+    .f-bk{color: yellow;}
+    .outs>p.shows>span.f-bk{margin-left: 0;}
+    .select_va{width: 280px;height: 30px;font-size: 28px;border: 1px #000 solid;display: inline-block;vertical-align: middle;}
+    @media screen and (max-width: 1565px){
+        .outs{width: 32.8%;}
+        .outs>p.titles{font-size: 20px;}
+        .fs20{line-height: 1.8;font-size: 17px;}
+        .outs>p.shows>span{margin-left: 14px;}
+        .outs>p.shows>span:nth-child(1){white-space: nowrap;text-overflow: ellipsis;overflow: hidden;max-width: 210px;}
+        .outs>p.shows>span:nth-child(2){vertical-align: top;}
+    }
+</style>
+<body>
+    <h1>我是後台!!</h1>
+    <div class='back_opacity' id='back_opa'>
+            <div class='sc_con a1'>
+               
+            </div>
+            <div class='sc_con a2'>
+                    
+            </div>
+            <div class='sc_con a3'>
+                    
+            </div>
+            
+            <div class='sc_con a4'>
+                <div class="part_out">
+                    <div class="outs ot_1">
+                        <p class='titles shows'>
+                            <span class="f-bk">製作部</span>
+                            <span class='Data_alls_peo'>
+                                <span class="bk">人數</span>
+                                <span class="bk">0</span>
+                            </span>
+                            <span class='Data_alls_score_avg'>
+                                <span class="bk">平均分數</span>
+                                <span class="bk">0</span>
+                            </span>
+                            <span class='Data_alls_score_all'>
+                                <span class="bk">總分</span>
+                                <span class="bk fs20">0</span>
+                            </span>
+                            <span class="Data_alls_rank">
+                                <span class="bk">排名</span>
+                                <span class="bk">0</span>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="outs ot_2">                            
+                            <p class='titles shows'>
+                                <span class="f-bk">企劃部</span>
+                                <span class='Data_alls_peo'>
+                                            <span class="bk">人數</span>
+                                            <span class="bk">0</span>
+                                </span>
+                                <span class='Data_alls_score_avg'>
+                                            <span class="bk">平均分數</span>
+                                            <span class="bk">0</span>
+                                </span>
+                                <span class='Data_alls_score_all'>
+                                            <span class="bk">總分</span>
+                                            <span class="bk fs20">0</span>
+                                </span>
+                                <span class="Data_alls_rank">
+                                        <span class="bk">排名</span>
+                                        <span class="bk">0</span>
+                                </span>
+                            </p>
+                            
+                    </div>
+                    <div class="outs ot_3">                            
+                            <p class='titles shows'>
+                                    <span class="f-bk">策略部</span>
+                                    <span class='Data_alls_peo'>
+                                            <span class="bk">人數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_avg'>
+                                            <span class="bk">平均分數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_all'>
+                                            <span class="bk">總分</span>
+                                            <span class="bk fs20">0</span>
+                                    </span>
+                                    <span class="Data_alls_rank">
+                                            <span class="bk">排名</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                            </p>
+                    </div>
+                    <div class="outs ot_4">                            
+                            <p class='titles shows'>
+                                    <span class="f-bk">管/會部</span>
+                                    <span class='Data_alls_peo'>
+                                            <span class="bk">人數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_avg'>
+                                            <span class="bk">平均分數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_all'>
+                                            <span class="bk">總分</span>
+                                            <span class="bk fs20">0</span>
+                                    </span>
+                                    <span class="Data_alls_rank">
+                                            <span class="bk">排名</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                            </p>
+                    </div>
+                    <div class="outs ot_5">                            
+                            <p class='titles shows'>
+                                    <span class="f-bk">設計部</span>
+                                    <span class='Data_alls_peo'>
+                                            <span class="bk">人數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_avg'>
+                                            <span class="bk">平均分數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_all'>
+                                            <span class="bk">總分</span>
+                                            <span class="bk fs20">0</span>
+                                    </span>
+                                    <span class="Data_alls_rank">
+                                            <span class="bk">排名</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                            </p>
+                    </div>
+                    <div class="outs ot_6">                            
+                            <p class='titles shows'>
+                                    <span class="f-bk">技術部</span>
+                                    <span class='Data_alls_peo'>
+                                            <span class="bk">人數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_avg'>
+                                            <span class="bk">平均分數</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                                    <span class='Data_alls_score_all'>
+                                            <span class="bk">總分</span>
+                                            <span class="bk fs20">0</span>
+                                    </span>
+                                    <span class="Data_alls_rank">
+                                            <span class="bk">排名</span>
+                                            <span class="bk">0</span>
+                                    </span>
+                            </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class='dot_out'>
+            </p>
+    </div>
+    <div id="emiter">
+        <input type="text" id="send_value">
+        <button id="send_msgbtn">發送訊息</button>
+        <button id="send_stopplay">禁止對戰</button>
+        <button id="send_stopplay_back">恢復對戰</button>      
+        <button id="send_update_record">刷新排行</button> 
+        <button id="send_get_data">取得資料</button> 
+        <p>
+            <span class="select_va"></span>
+            <button id="send_delete_player">刪除玩家</button>
+        </p>     
+    </div>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/scroll.js"></script>
+    <script>
+        
+        $(document).ready(function(){
+            var select_dom;
+            $("#send_msgbtn").on('click',function(){
+                var val=$('#send_value').val();
+                socket.emit('send_msg',{say:val});
+               $('#send_value').val('');
+            });
+            $('#send_stopplay').on('click',function(){
+                socket.emit('stop_fight',{refuse_play:true});
+            });
+            $('#send_stopplay_back').on('click',function(){
+                socket.emit('stop_fight',{refuse_play:false});
+            });
+            $('#send_get_data').on('click',function(){
+                socket.emit('GiveMeData');
+            });
+            $(document).on('click', '.hiddes' , function() {                
+                $('.hiddes.selected').removeClass('selected');
+                var vals=$(this).find('.names').text();
+                $('.select_va').html(vals);
+                select_dom=$(this);
+                $(this).addClass('selected');
+            });
+            $('#send_delete_player').on('click',function(){
+                select_dom.remove();
+                var val=$('.select_va').html();
+                console.log(val);
+                socket.emit('delete_player',{name:val});
+                $('.select_va').html("");
+                select_dom=null;
+            });
+
+            var t1=new Scrolls_opa($('#back_opa'));
+            var myID;
+            var socket= io();  
+            socket.on("newclientconnect",function(){//--伺服器傳來自己進入後台   
+                socket.emit('gobacks');
+            });
+            socket.on("message",function(e){                
+                var num = 1305856000000;
+                var dd = new Date(num).toString();
+                if(e.stg==0){
+                    var a=e.name;
+                    $('.a1').append(
+                        `<p class='says'><span>${a}</span><span>登入</span><span>${dd}</span></p>`
+                    )
+                }else if(e.stg==1){
+                    //e.partnb
+                    var a=e.name;
+                    var aa=e.score;
+                    $('.a2').append(
+                        `<p class='says'><span>${a}</span><span>+</span><span>${aa}分</span><span>${dd}</span></p>`
+                    )
+                }else if(e.stg==2){
+                    var a=e.name;
+                    $('.a3').append(
+                        `<p class='says'><span>${a}</span><span>登出</span><span>${dd}</span></p>`
+                    )
+                }                            
+            });
+            socket.on("checkdatas_back",function(msg){//--檢查所有人的資料
+                //console.log(msg);
+                for(var i=0;i<msg.length;i++){
+                    if(msg[i]!=null){
+                        var ThisCreated=false;
+                        var nn0=".ot_"+msg[i][2];
+                        var nn=$(`${nn0}`);
+                        var chs=nn.find('.hiddes');
+                        for(var a=0;a<chs.length;a++){//--尋找 是否已經建立這筆資料                        
+                            var va0=chs.eq(a).find('.names').text();
+                            if(msg[i][0]==va0){                            
+                                ThisCreated=true;
+                                chs.eq(a).find('.Data_item').text(msg[i][1]);//--已經建立  更新data                            
+                                break;
+                            }
+                        }
+                        var da1=msg[i][0];
+                        var da2=msg[i][1];
+                        if(ThisCreated==false){//--未建立 建立                        
+                            nn.append(
+                                `<p class='hiddes shows'>
+                                <span class="names">${da1}</span>
+                                <span class='Data_item'>${da2}</span>
+                                </p>`
+                            );
+                        }
+                    }                    
+                }//--for i END                
+                
+            });
+            // setTimeout(TimeOutRun,3000);
+            // function TimeOutRun(){                    
+            //         socket.emit('GiveMeData');
+            //         setTimeout(TimeOutRun,3000);
+            // }
+            $('#send_update_record').on('click',function(){                
+                for(var c=1;c<7;c++){//--分數排列
+                    var nn0=".ot_"+c;
+                    var nn1=$(`${nn0}`).find('.hiddes');
+                    var nn2=$(`${nn0}`);
+                    Ranking_sort(nn1,c);
+                    getAveragePoint(c);
+                }
+                var big_s=$('.part_out').find('.outs');
+                Ranking_sort_big(big_s); 
+            });            
+            function Ranking_sort(Dom_le,c){//--所有資料排名(部門中內部)
+                var R_allnb=Dom_le.length;
+                var Datas=[];            
+                for(i=0;i<R_allnb;i++){
+                    var vv=Dom_le.eq(i);
+                    var vv2=vv.find('.Data_item').text();
+                    var vvv=[vv,vv2];
+                    Datas.push(vvv);                    
+                }
+                Datas.sort(function (a, b) {//--小到最大
+                    return a[1] - b[1];
+                });
+                Ranking_do(Datas,c);            
+            }
+            function Ranking_do(data,c){//--Dom畫面排名更動
+                var Dom0=".ot_"+c;                                            
+                for(i=0;i<data.length;i++){                
+                    var a=$(`${Dom0}`).find('.hiddes').eq(i);               
+                    var s=data.length-(i+1);
+                    data[s][0].insertBefore(a);//--data移動到a(DOM)之前                    
+                }
+            }
+            function getAveragePoint(c){
+                var Dom0=".ot_"+c;
+                var Dom1=$(`${Dom0}`);
+                var Dom=$(`${Dom0}`).find('.hiddes');
+                var len=Dom.length;
+                if(len>0){
+                    var val_all=0;
+                    for(var i=0;i<len;i++){
+                        var vals=Dom.eq(i).find('.Data_item').text();                        
+                        vals=parseInt(vals);                        
+                        val_all=val_all+vals;                        
+                    } 
+                    var avg=val_all/len;
+                    avg=avg.toFixed(1);
+                    Dom1.find('.titles').find('.Data_alls_peo').find('span').eq(1).text(len);                    
+                    Dom1.find('.titles').find('.Data_alls_score_avg').find('span').eq(1).text(avg);
+                    Dom1.find('.titles').find('.Data_alls_score_all').find('span').eq(1).text(val_all);
+                }                
+            }
+            function Ranking_sort_big(Dom_le){//所有資料排名(各部門)
+                var R_allnb=Dom_le.length;                
+                var Datas=[];            
+                for(i=0;i<R_allnb;i++){
+                    var vv=Dom_le.eq(i);
+                    var vv2=vv.find('.titles').find('.Data_alls_score_avg').find('span').eq(1).text();                    
+                    var vvv=[vv,vv2];  
+                    Datas.push(vvv);                                      
+                }
+                Datas.sort(function (a, b) {//--小到最大
+                    return a[1] - b[1];
+                });                
+                Ranking_do2(Datas);            
+            }
+            function Ranking_do2(data){//--Dom畫面排名更動
+                for(i=0;i<data.length;i++){                            
+                    var a=$('.part_out').find('.outs').eq(i);
+                    var s=data.length-(i+1);         
+                    var rr=i+1;             
+                    data[s][0].insertBefore(a);//--data移動到a(DOM)之前                    
+                    data[s][0].find('.titles').find('.Data_alls_rank').find('span').eq(1).text(rr);
+                }
+            }
+
+        });
+    </script>
+</body>
+</html>

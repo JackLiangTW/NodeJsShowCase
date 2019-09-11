@@ -1,0 +1,27 @@
+去官網下載安裝黨安裝完畢後
+
+開啟cmder(第一個)  執行啟動MongoDB
+ex:
+(1)
+//---cd到安裝的mongodb主資料夾下
+cd "C:\Program Files\MongoDB\Server\4.0\bin"
+
+(2)
+//---設定料庫存放位置(c:\data\mydb\db)
+mongod --dbpath c:\data\mydb\db
+
+(3)使用MongoDB Shell
+開啟cmder(第2個 啟用資料庫(第一個cmder)後才可以用)
+//---cd到安裝的mongodb主資料夾下
+cd "C:\Program Files\MongoDB\Server\4.0\bin"
+
+(4)
+mongo
+---------------------------------------------------------
+
+要用系統管理員執行cmder
+啟用資料庫服務：
+net start MongoDB
+
+停用資料庫服務：
+net stop MongoDB

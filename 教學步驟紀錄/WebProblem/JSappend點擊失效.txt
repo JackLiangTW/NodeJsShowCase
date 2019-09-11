@@ -1,0 +1,8 @@
+
+
+//?所有??imgItem的??添加事件，$(document).on("click","指定的元素",function(){});是?指定的事件?定在document上，
+只要而新?生的元素符合指定的元素，就??定此事件  ，而且?种方法??面需要?多???初始化事件的?候，就不需要一??加onclick事件
+        $(document).on("click",".imgItem",function(){
+            var fileId=$(this).attr("fileId")
+            downLoadFunction(fileId);
+        })

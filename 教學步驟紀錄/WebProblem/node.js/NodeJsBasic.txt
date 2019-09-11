@@ -1,0 +1,28 @@
+指令:
+  cd 資料夾(移到該目錄)
+  cd..  (回到上一層)
+  node example.js(執行js)
+  npm XXX -v (查詢XXX npm 的版本)
+  npm info XXX version(查詢XXX npm 的版本)
+  mkdir floder5(創建一個叫做"floder5"的資料夾)
+---------------------------------------
+發布npm
+  (cd到要發布的資料夾下,或是創一個新的資料夾來當發布用)
+  npm init(創建package.json)
+  npm login(npm登入 之後才能發布npm)
+  npm publish(把本機的package.json和js函數等 傳到npm網站 變公開npm[要npm官網帳號])
+  npm install jcakliang_linetest@latest(安裝npm "jcakliang_linetest"最新版本)
+---------------------------------------
+(創建一個新的資料夾當module,然後cmd 路徑到該資料夾下)
+npm init  步驟
+1:package name:jack-liang-googlecloud  (命名一個jack-liang-googlecloud的新npm,之後要install 就是這名字)
+2:version:(1.0.0)   (之後要更新上一步打同一名字,再調版本)
+3:dependencies:   (用來裝其他的套件extension)EX:dependencies:{"express":"4.9.5"}
+4:entry point:(index.js)    (這支module藥用的js檔  預設是index.js)
+---------------------------------------------
+(主機host index)
+1:(終端機 全域安裝http-server) npm install http-server -g
+2:(終端機)cd 到資料夾路徑 在打http-server -p 123321 (便可host該網頁)(數字部分可以隨意更改)
+
+Ngrok example:
+ngrok http 4000

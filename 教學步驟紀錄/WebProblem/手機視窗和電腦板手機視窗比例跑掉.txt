@@ -1,0 +1,4 @@
+加上這個  讓手機板的視窗符合真正的寬度大小(不然會被縮小)
++在<head>下面  引入css/script  之前
+
+<meta name="viewport" content="width=device-width, initial-scale=1">

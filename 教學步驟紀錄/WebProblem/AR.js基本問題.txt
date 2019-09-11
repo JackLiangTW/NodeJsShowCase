@@ -1,0 +1,33 @@
+
+
+AR.js基本教學:https://aframe.io/blog/arjs/
+AR.js製作patt圖檔:https://jeromeetienne.github.io/AR.js/three.js/examples/marker-training/examples/generator.html
+--------------------------------------------------------------------------------------------------
+1).patt檔案(AR的辨識圖) 不能用本機檔案 要用https的連結檔
+<a-marker type='pattern' url="https://raw.githubusercontent.com/vettorazi/aframe-gltf-models/master/markerv6.patt">
+答案來源:https://github.com/jeromeetienne/AR.js/issues/336
+--------------------------------------------------------------------------------------------------
+2)<a-assets>(放3D模組 用id給entity執行)(網址,本機都行)(放在<a-scene>之中</a-scene>)
+EX:
+    <a-assets>
+        <a-asset-item id="GHbmw_obj" src="https://raw.githubusercontent.com/JackLiangTW/ARjs/master/BMWX54.obj"></a-asset-item>
+        <a-asset-item id="GHbmw_mtl" src="https://raw.githubusercontent.com/JackLiangTW/ARjs/master/BMWX54.mtl"></a-asset-item>
+        <a-asset-item id="bmw_obj" src="./models/BMWX54.obj"></a-asset-item>
+        <a-asset-item id="bmw_mtl" src="./models/BMWX54.mtl"></a-asset-item>
+    </a-assets>
+--------------------------------------------------------------------------------------------------
+3)<a-entity>(render3D模組,本機,網路URL都行) (看不見模型 scale讓他縮小,很大的機率是模型大過攝影機)
+   EX:   (obj_mode)EX:<a-entity scale="0.3 0.3 0.3" obj-model="obj: #IOS_obj; mtl: #IOS_mtl"></a-entity>
+--------------------------------------------------------------------------------------------------
+<a-scene embedded arjs='sourceType: webcam;trackingMethod: best;debugUIEnabled: false;'>
+					      攝影機跟隨3D物件?	   左下UI拿掉
+--------------------------------------------------------------------------------------------------
+當XX(a-marker)  被感應到(show出3D)   |離開感應("markerLost")
+XX.addEventListener("markerFound", (e)=>{ // your code here}
+
+
+3D rotate:
+https://aframe.io/docs/0.8.0/core/entity.html
+
+ARjs 範例
+https://github.com/prashant-andani/AR-Alphabets/blob/master/scripts/main.js

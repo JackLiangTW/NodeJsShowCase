@@ -1,0 +1,24 @@
+參考教學:
+https://ithelp.ithome.com.tw/articles/10128634
+
+1.安裝ruby
+http://rubyinstaller.org/downloads/
+打勾地方3個都勾
+
+2.安裝完成
+開啟:start command prompt with ruby
+
+3.安裝compass (start command prompt with ruby輸入)
+gem install compass
+
+4.相關之令
+compass create XXX (創建以XXX為名的compass專案)
+compass watch XXX (監聽XXX為名的compass專案-->修改scss自動輸出成css以[config.rb為路徑設定])
+
+5.config.rb簡介
+(輸出對應路徑)
+http_path = "/"
+css_dir = "stylesheets"
+sass_dir = "sass"
+images_dir = "images"
+javascripts_dir = "javascripts"

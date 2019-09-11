@@ -1,0 +1,37 @@
+1.	到GitGub網頁  用自己帳號新增 New Repository 打好基本資料  送出
+	跳到新視窗  "Quick setup — if you’ve done this kind of thing before"
+	複製他的連結
+
+2.	終端機 cd到要發布的資料夾下
+
+3.	git init
+
+4.	git remote add origin https://github.com/JackLiangTW/winmine.git(1.得到的網址)
+
+4.2	(如果是要修改增加東西到已建好的Repository)
+	git remote https://github.com/JackLiangTW/winmine.git(已建好Repository的網址)
+
+5.	git checkout --orphan gh-pages (開心的分支branch) (之後路徑會切到新開的分支gh-pages之中)
+	git status (查看該路徑中的檔案狀態)
+
+6.	git add index.hrml  (把要傳到github的檔案add進去)
+	git add . (資料夾中全部檔案加進去)
+
+7.	git commit -a -m "init" (同意加入)(-a 是加入的意思) (-m 是附加的訊息)
+
+8.	git push origin gh-pages(push到github    origin是第4.的origin    gh-pages是第5.的gh-pages)
+
+8.2	(如果是修改增加的push)
+	git push --set-upstream origin addYaml  (addYaml=branch名字)
+
+9.	重新整理 github網頁  上傳成功
+
+10.	https://github.com/JackLiangTW/winmine  (假如  上傳成功的網頁)
+	https://JackLiangTW.github.io/winmine/  (可以用這個網址打開成 靜態網頁)
+	https://jackliangtw.github.io/Work3D/AR3dGames
+
+國泰	https://jackliangtw.github.io/cathay/index_01.html
+新秀麗	https://jackliangtw.github.io/samsonite/
+踩地雷  https://jackliangtw.github.io/winmine/index.html
+
+* 	sudo rm -rf folderName (刪除資料夾-裡面有東西也刪除)

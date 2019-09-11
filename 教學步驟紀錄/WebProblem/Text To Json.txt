@@ -1,0 +1,5 @@
+
+err:done抓取的全部植
+
+如果f11顯示出來不是json就要轉換(顯示出來只是text的話)   JSON.parse(text);
+data2=JSON.parse(err);

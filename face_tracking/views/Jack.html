@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="face-api.js"></script>
+  <script src="js/commons.js"></script>
+  <script src="js/faceDetectionControls.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<style>
+.page-container{padding-left: 0;margin-top: 0;}
+#my_add{position: absolute;top:0;left:0px;display: inline-block;vertical-align: baseline;z-index: 99;}
+#overlay,#inputVideo{width:100vw;}/*height: 98vh;*/
+.margin{margin: 0;}
+</style>
+<body>
+  <div id="navbar"></div>
+  <canvas id="my_add"></canvas>
+  <div class="center-content page-container">
+
+    <div class="progress" id="loader">
+      <div class="indeterminate"></div>
+    </div>
+    <div id="of_div" style="position: relative" class="margin">
+      <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
+      <canvas id="overlay"></canvas>      
+    </div>
+  </div>
+    <!-- <div class="row side-by-side">
+      
+      <div id="face_detector_selection_control" class="row input-field" style="margin-right: 20px;">
+        <select id="selectFaceDetector">
+          <option value="ssd_mobilenetv1">SSD Mobilenet V1</option>
+          <option value="tiny_face_detector">Tiny Face Detector</option>
+          <option value="mtcnn">MTCNN</option>
+        </select>
+        <label>Select Face Detector</label>
+      </div>
+
+
+
+      <div id="fps_meter" class="row side-by-side">
+        <div>
+          <label for="time">Time:</label>
+          <input disabled value="-" id="time" type="text" class="bold">
+          <label for="fps">Estimated Fps:</label>
+          <input disabled value="-" id="fps" type="text" class="bold">
+        </div>
+      </div>
+
+
+    </div> -->
+
+
+    <!-- ssd_mobilenetv1_controls -->
+    <!-- <span id="ssd_mobilenetv1_controls">
+      <div class="row side-by-side">
+        <div class="row">
+          <label for="minConfidence">Min Confidence:</label>
+          <input disabled value="0.5" id="minConfidence" type="text" class="bold">
+        </div>
+        <button
+          class="waves-effect waves-light btn"
+          onclick="onDecreaseMinConfidence()"
+        >
+          <i class="material-icons left">-</i>
+        </button>
+        <button
+          class="waves-effect waves-light btn"
+          onclick="onIncreaseMinConfidence()"
+        >
+          <i class="material-icons left">+</i>
+        </button>
+      </div>
+    </span> -->
+    <!-- ssd_mobilenetv1_controls -->
+
+    <!-- tiny_face_detector_controls -->
+    <!-- <span id="tiny_face_detector_controls">
+      <div class="row side-by-side">
+        <div class="row input-field" style="margin-right: 20px;">
+          <select id="inputSize">
+            <option value="" disabled selected>Input Size:</option>
+            <option value="128">128 x 128</option>
+            <option value="160">160 x 160</option>
+            <option value="224">224 x 224</option>
+            <option value="320">320 x 320</option>
+            <option value="416">416 x 416</option>
+            <option value="512">512 x 512</option>
+            <option value="608">608 x 608</option>
+          </select>
+          <label>Input Size</label>
+        </div>
+        <div class="row">
+          <label for="scoreThreshold">Score Threshold:</label>
+          <input disabled value="0.5" id="scoreThreshold" type="text" class="bold">
+        </div>
+        <button
+          class="waves-effect waves-light btn"
+          onclick="onDecreaseScoreThreshold()"
+        >
+          <i class="material-icons left">-</i>
+        </button>
+        <button
+          class="waves-effect waves-light btn"
+          onclick="onIncreaseScoreThreshold()"
+        >
+          <i class="material-icons left">+</i>
+        </button>
+      </div>
+    </span> -->
+    <!-- tiny_face_detector_controls -->
+
+    <!-- mtcnn_controls -->
+    <!-- <span id="mtcnn_controls">
+      <div class="row side-by-side">
+        <div class="row">
+          <label for="minFaceSize">Minimum Face Size:</label>
+          <input disabled value="20" id="minFaceSize" type="text" class="bold">
+        </div>
+        <button
+          class="waves-effect waves-light btn"
+          onclick="onDecreaseMinFaceSize()"
+        >
+          <i class="material-icons left">-</i>
+        </button>
+        <button
+          class="waves-effect waves-light btn"
+          onclick="onIncreaseMinFaceSize()"
+        >
+          <i class="material-icons left">+</i>
+        </button>
+      </div>
+    </span> -->
+    <!-- mtcnn_controls -->
+
+  </body>
+
+  <script>
+
+    let withFaceLandmarks = true;//臉部 定位點開啟 68 positions
+    let forwardTimes = []
+
+    function updateTimeStats(timeInMs) {
+      forwardTimes = [timeInMs].concat(forwardTimes).slice(0, 30)
+      const avgTimeInMs = forwardTimes.reduce((total, t) => total + t) / forwardTimes.length
+      $('#time').val(`${Math.round(avgTimeInMs)} ms`)
+      $('#fps').val(`${faceapi.round(1000 / avgTimeInMs)}`)
+    }
+
+    async function onPlay() {    
+      const videoEl = $('#inputVideo').get(0)
+
+      if(videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())return setTimeout(() => onPlay())
+
+        const options = getFaceDetectorOptions()
+
+        const ts = Date.now()
+
+        //const result = await faceapi.detectSingleFace(videoEl, options) //OR                
+        //const result =await faceapi.detectSingleFace(videoEl, options).withFaceLandmarks() //-Office cant draw                                  
+        //console.log(result);
+
+        updateTimeStats(Date.now() - ts)        
+
+        const result = await faceapi.detectSingleFace(videoEl, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks()
+        //console.log(result)
+
+        // const canvas = $('#overlay').get(0);   
+        // faceapi.draw.drawDetections(canvas, resizedDetections)
+        // faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+
+      if (result) {
+        const canvas = $('#overlay').get(0);        
+        const dims = faceapi.matchDimensions(canvas, videoEl, true);        
+        const resizess=faceapi.resizeResults(result, dims); 
+         
+        faceapi.draw.drawDetections(canvas,resizess);  //-OR 
+      }
+      
+      if(result!=undefined){
+        update_my_draw(result);
+      }else{
+        clear_mydraw();
+      }
+
+      setTimeout(() => onPlay());
+    }
+
+    async function run() {
+      // load face detection model
+      // await changeFaceDetector(TINY_FACE_DETECTOR);
+      // //await faceapi.loadFaceLandmarkModel('/')//-要加這個才能使用landmark
+      // changeInputSize(128);      
+      
+      await changeFaceDetector(TINY_FACE_DETECTOR)
+      await faceapi.loadFaceLandmarkModel('/')
+      //changeInputSize(416)
+      changeInputSize(320)
+
+      // start processing frames
+      onPlay($('#inputVideo').get(0))
+
+      // try to access users webcam and stream the images
+      // to the video element
+      const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+      const videoEl = $('#inputVideo').get(0);
+      videoEl.srcObject = stream;
+      set_my_canvas();
+    }
+
+    function updateResults() {}
+
+    /*My ADD*/
+    var c_myadd = document.getElementById('my_add');
+    var ctx_myadd = c_myadd.getContext('2d');
+    var sc_v=1;
+    //var c_of = $('#inputVideo').width();
+    function set_my_canvas(){
+      var ooo=window.innerWidth;
+      console.log(ooo);      
+      c_myadd.width=ooo;
+      c_myadd.height=(ooo/640)*480;
+      sc_v=ooo/640;      
+    }
+
+    function update_my_draw(arr){
+        ctx_myadd.clearRect(0, 0, c_myadd.width, c_myadd.height);         
+          var pos_all=arr['landmarks']['positions'];
+          //console.log(pos_all.length);  68
+          for(var i=48;i<68;i++){//pos_all.length  //48-68mouth              
+              ctx_myadd.fillStyle = '#82c4f5';
+              ctx_myadd.beginPath();
+              ctx_myadd.arc(arr['landmarks']['positions'][i]['_x']*sc_v,arr['landmarks']['positions'][i]['_y']*sc_v,2, 0, 2 * Math.PI);
+              ctx_myadd.fill();
+          }
+                
+    }
+    function clear_mydraw(){
+        ctx_myadd.clearRect(0, 0, c_myadd.width, c_myadd.height);         
+    }
+    /*My ADD*/
+
+    $(document).ready(function() {
+      console.log('v1');
+      //renderNavBar('#navbar', 'webcam_face_detection');
+      //renderNavBar('#navbar', 'Jack');
+      initFaceDetectionControls();
+      run();
+    })
+  </script>
+</body>
+</html>

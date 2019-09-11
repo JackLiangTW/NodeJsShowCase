@@ -1,0 +1,10 @@
+1.Developer帳號
+電話:(0975534363)
++886975534363
+
+2.問題:Bundle
+需要用unity 版本2018.3.2以後開啟
+直接在android輸出葉面 勾選Build App Bundle 打勾
+
+3.解決google play需要64位元
+player setting -- other setting (然後照圖片指示)

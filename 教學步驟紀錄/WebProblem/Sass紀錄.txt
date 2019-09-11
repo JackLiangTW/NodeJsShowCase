@@ -1,0 +1,10 @@
+1.
+專案建一個資料夾'SASS' 裡面用來存.scss,.sass檔案
+
+2.
+prepros 下載(sass轉成css)
+下載完安裝玩 開啟prepros.app 把專案拉進應用程式
+
+
+_XXX.sass(_開頭的是給其他sass引入(@import XXX) 像是板塊 有用到在@import)
+

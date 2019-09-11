@@ -1,0 +1,28 @@
+1.去heroku官網辦帳號 密碼 大小寫數字
+2.新增Creat new app  (名字不能重複) --> Create
+3.Download Heroku CLI(用終端機可以操作Heroku  for Windows)
+
+4.(cd 到專案資料夾中)終端機輸入heroku (查看是否安裝完成)
+5.終端機輸入 heroku login   -->打帳密
+6.git init
+7.在專案資料夾中 第一層(同app.js) 新增Profile檔案(沒有副檔名),並且輸入 web: npm start
+8.在專案資料夾中 第一層(同app.js) 新增.gitignore (忽略上傳的檔案放到裡面 直接在裡面輸入黨名)
+	EX:(下面node_modules整個資料夾就不會 放到上傳名單中)
+	/node_modules
+	npm-debug.log
+	.DS_store
+	/*.env
+9.終端機輸入git status (查看有哪些檔案沒有加入追中)
+10.終端機輸入git add .gitignore	(把.gitignore加入追中[可以commit上去] 把需要的檔案都add進去)git add .(追中全部)
+11.依造heroku官網給的指令(新增app的教學中)終端機輸入heroku git:remote -a XXX  (XXX是自己app命名) 
+12.git commit -a -m "init commit" (commit 並輸入這次commit的內容介紹)
+13.git push heroku master (放到heroku中)
+
+//--
+heroku會依造package.json安裝node modules所以commit時不需要把畚箕的modules放到追中
+
+answergame
+group-answer-game
+ 
+
+

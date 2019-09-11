@@ -1,0 +1,16 @@
+IE:
+parentout{}//--'parents'的外部
+parents{height:auto;position:relative;}
+child0{height:350px;}//--實際的高度  要讓其他人吃到的高度
+child1{height:100%;}//--會吃不到(會變成吃到body的100%)
+
+解決:(IE chrome都可以共同解決)
+在parentout{}加上displayLflex;屬性
+EX: width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+
+

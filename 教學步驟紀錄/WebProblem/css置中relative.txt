@@ -1,0 +1,2 @@
+要讓position:relative能夠使用 top,transform:translate()來置中 
+就必須加上(本身元素)display:block;或者display:inline-block

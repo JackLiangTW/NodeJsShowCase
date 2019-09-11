@@ -1,0 +1,35 @@
+只能用Mac做 (Spark AR Studio)
+
+控制方法
+1.Script:
+  在.arproj檔案同層新建Scripts資料夾 建立.js  可以直接使用
+  var XX=require("XXX");用node.js方法抓取模組
+  ----------------------------------------------------------------------------------
+  var FaceGuestyres=require("FaceGuestyres");  抓取spark AR 判斷表情的模組
+  FaceGuestyres.onShake(FaceTracking(0)).subscribe(function(e){}) 如果第一個臉部(多人不行?)搖頭=>執行內部函式
+  ----------------------------------------------------------------------------------
+  var Time=require("Time");
+  Time.setTimeout(function(){})  可以用Time.setTimeout
+  ----------------------------------------------------------------------------------
+  var FaceTracking = require('FaceTracking');  臉部追蹤
+  FaceTracking.face(0).mouth.openness.monitor().subscribe(function(openness){
+  	if (openness.newValue > 0.1) {} 如果嘴張開的可能性大於0.1 (可能性0~1)
+  })
+  ----------------------------------------------------------------------------------
+  var mouthEmitterGold = sceneBase.child('FaceTracker').child('MouthEmitterGold');
+  用來抓取場景物建
+  Scene-->FaceTracker-->(底下叫做)MouthEmitterGold的物件
+  ----------------------------------------------------------------------------------
+2.Patch Editor
+
+3.script傳參數給Patch Editor (https://developers.facebook.com/docs/ar-studio/reference/classes/patchesmodule)
+點Asset的script ->右邊有from script --> (+)新增要傳的參數
+要 const Patches = require('Patches');
+Patches.setBooleanValue('myBoolean', myBoolean);  //-'myBoolean'=自己命名的參數
+
+4.美白
+faceTracker中新建faceMesh
+新建Material ->Shader Type改成 Retouching 下面可以調%數
+Material放到faceMesh中
+
+

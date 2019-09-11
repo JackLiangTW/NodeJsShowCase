@@ -1,0 +1,26 @@
+heroku git:clone -a group-answer-game (heroku網站上的Deploy步驟 -clone)
+
+cd group-answer-game (heroku網站上的Deploy步驟)
+
+git checkout --orphan version2(新branch名字)
+
+git add --all 
+
+git checkout master
+
+git merge version2 --allow-unrelated-histories (merge version2到master)
+
+(如果發生conflict) To /**修改conflict***/
+
+git commit -a -m "init2" (解釋)
+
+git push heroku master  (push)
+
+git branch -D version2 (刪除新增branch)
+
+/**修改conflict***/
+
+到發生conflict的檔案(例如 index.html)用VScode開啟->然後保留自己想要的刪除系統標記的->處存
+git add index.html(發生conflict的)
+
+/**修改conflict***/

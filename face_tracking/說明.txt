@@ -1,0 +1,25 @@
+face-api.js
+
+gitjub:
+https://github.com/justadudewhohacks/face-api.js#face-api.js-for-the-browser
+
+view資料夾對應位置:
+face-api.js/examples/examples-browser/views
+
+sever.js對應位置:
+face-api.js/examples/examples-browser/
+
+步驟:
+1.(git clone 他的example)
+git clone https://github.com/justadudewhohacks/face-api.js.git
+
+2.cd到指定目錄下
+cd face-api.js/examples/examples-browser
+
+3.安裝所需套件
+npm i
+
+4.執行
+npm start
+
+*可以更改sever.js選擇render哪個葉面

@@ -1,0 +1,52 @@
+1.(建立好資料夾 並cd到那)
+npm install express-generator -g --save
+sudo npm install express-generator -g --save (如果上面安裝錯誤的話)
+
+2.
+express -e mynames (安裝ejs模板)
+
+3.cd到ejs資料夾中
+npm install  (安裝ejs預設需要的套件"從package.json")
+
+4.(要開啟才用)
+npm start  (執行)
+
+5.(sequelize關聯式資料庫安裝)https://github.com/sequelize/express-example
+npm --save install sequelize sequelize-cli sqlite3
+npm install -g sequelize sequelize-cli(全域安裝)
+
+6.產生資料庫樣板
+node_modules\.bin\sequelize init   (For Windows)
+node_modules/.bin/sequelize init   (For Mac?)
+
+產生玩樣板之後剁了3個資料夾
+migrations:紀錄資料庫修改變動  資料庫版的git
+models:建立資料庫整個結構 table...
+seeders:生成假資料用
+
+
+7.到config資料夾的config.json中修改
+把
+"dialect": "mysql"
+改成
+"dialect": "sqlite"
+
+8.產生資料庫(127.0.0.1)
+node_modules\.bin\sequelize db:migrate
+
+9.https://github.com/sequelize/express-example
+錯誤: SQLITE_ERROR: no such table: Accounts
+
+解決方法:到bin資料夾中www 加入下面這段:(var server = http.createServer(app)下方)
+原本的:
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+外面包上(models.sequelize.sync()...)變成:
+models.sequelize.sync().then(function () {
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+});
+

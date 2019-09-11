@@ -1,0 +1,27 @@
+git init
+
+git clone
+
+git remote add origin http://git.webgene.tw/webgene/cathaylife-insurance.git 
+
+git remote -v
+
+git pull origin master //從遠端 把(origin master) 拉下來  master(是branch名字)   需要pull在pull push之前一定要pull
+
+git add --all
+
+git commit -m "first update"
+
+git status
+
+git push -u origin master
+
+
+git branch --set-upstream-to=origin/master master //把 orgin的master(gitlab的repostiry) 和畚箕的master做串聯
+
+
+
+git config --system --unset credential.helper   //重設 git帳號密碼
+
+
+

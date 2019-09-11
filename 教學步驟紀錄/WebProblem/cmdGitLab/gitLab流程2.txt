@@ -1,0 +1,49 @@
+第一次新建repository在gitlab 流程
+在gitlab網站新建repository 設定為public  *複製連結
+
+cd 到上船資料夾中
+
+git init
+
+git remote add origin http://git.webgene.tw/webgene/cathaylife-insurance.git
+	-->origin(*自己命名) http://git.webgene.tw/webgene/cathaylife-insurance.git(*複製連結)
+
+git remote -v  看到當前的連結狀態
+
+git status  查看狀態
+
+git add --all   所以檔案加入追蹤
+
+git commit -m "first update"
+
+git push -u origin master    push上去
+	-->master(*自己命branch名)
+
+/*********fatal: Authentication failed for**********/
+帳號錯誤
+
+/*********hint: (e.g., 'git pull ...') before pushing again.**********/
+第一次:
+git pull
+	->pull空直
+
+之後:
+git pull origin master
+	->origin(*自己命名) master(*自己命branch名)
+
+
+/*****git pull之後*There is no tracking information for the current branch.
+提示:  git branch --set-upstream-to=origin/<branch> master	**********/
+
+git branch --set-upstream-to=origin/master master   //-把origin的master(gitlab的repository) 和本機的master做串聯
+	(之後再輸入)=>git pull
+	/***fatal: refusing to merge unrelated histories***/
+	(之後再輸入)=>git pull --allow-unrelated-histories
+	(之後再輸入)=>git push -u origin master  (成功)
+
+/***/
+git config --system --unset credential.helper   //重設 git帳號密碼
+
+	
+
+

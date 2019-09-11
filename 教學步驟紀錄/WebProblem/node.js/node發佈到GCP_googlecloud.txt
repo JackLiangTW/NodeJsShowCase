@@ -1,0 +1,43 @@
+去GCP申請帳號 google cloud platform
+
+教學影片:https://www.youtube.com/watch?v=n4svrNcAkJg
+
+
+1.新增專案 --> 命名
+
+2.下載SDK(Google Cloud SDK Shell) 載完並執行
+
+3.SDK(Google Cloud SDK Shell)執行  cd到要push的專案資料夾底下
+
+4.gcloud auth login -->跳網頁登入
+
+5.gcloud config set project XXX  (XXX:專案id 從網頁查詢剛創立的專案ID)
+gcloud config set project socketgameparty
+gcloud config set project socketgame3
+
+6.在待push專案資料夾中 建立app.yaml
+內容:(參考GCP node版本教學)
+runtime: nodejs
+env: flex
+
+# This sample incurs costs to run on the App Engine flexible environment.
+# The settings below are to reduce costs during testing and are not appropriate
+# for production use. For more information, see:
+# https://cloud.google.com/appengine/docs/flexible/nodejs/configuring-your-app-with-app-yaml
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
+
+7.修改package.json資訊  "script"中增加:(原本有"test":"echo\"Error: no test specified..")
+	"start":"app.js",
+	"deploy":"gcloud app deploy",
+
+8.gcloud app deploy  (上傳到GCP)
+
+*要更新版本 可以修改資料夾檔案後再次執行gcloud app deploy
+
+*socket.io client的js部分要修改(要在GCP run的話) ,不然會報錯誤(failed: Error during WebSocket handshake: Unexpected response code: 400)
+	var socket= io(); => var socket = io({transports: ['websocket']});

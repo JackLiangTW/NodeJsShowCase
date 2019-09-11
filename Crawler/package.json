@@ -1,0 +1,18 @@
+{
+  "name": "crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JackLiang",
+  "license": "MIT",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "images": "^3.0.2",
+    "phantom": "^6.2.0",
+    "puppeteer": "^1.15.0",
+    "request": "^2.88.0"
+  }
+}

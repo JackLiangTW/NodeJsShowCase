@@ -1,0 +1,21 @@
+1.不用node.js安裝  直接都用cdn
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <!-- Don't use this in production: -->不推薦這種方法 效率被壓縮
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  <script type="text/babel"> //--babel是轉換JSX 成JS
+     ReactDOM.render(
+        <h1>Hello, world!</h1>,
+        document.getElementById('root')
+     );    
+  </script>
+
+
+2.Nodejs 安裝React相關  (create-react-app)
+
+1)  npm install -g create-react-app  (全域安裝)
+2)  create-react-app hellownewreact  (創建新資料夾hellownewreact 以create-react-app架構 )
+3)  cd hellownewreact   (移動到新創 資料夾中  使用指令)
+	npm start (本機啟動server) 
+ 	npm build (Bundle the app into static files for production)
+	npm test

@@ -1,0 +1,34 @@
+UnityTiny:Unity製作h5的package(目前只能2D),輸出檔案比原本apk.exe小很多
+
+1:Unity 版本要2018.3以上才可安裝Tiny Packaege
+Windows-->Package Manager -->Advanced-->找到Tiny 安裝
+Project視窗的Packages找到TinyMode典籍裡面的tiny-samples(Unity package)
+
+2:簡介
+ESC系統:Unity Tiny把原本Unity Monobehavier改成ESC系統
+
+   E(Entities):
+   像是Unity原本的scene一樣,因為Tiny無法做到切換場景的功能只能用不同Enities當作Scene
+   也可以當作群組(野蠻像是prefabs)可以重複製作
+
+   S(Script/System):
+   腳本,很奇特的地方是 Tiny不用指派script到component上,反而是在腳本中用到選擇器篩選到符合條件(/符合component條件)
+   就可以對該物件執行腳本
+EX:
+this.world.forEach([game.MoveSpeed,game.MoveWithInput,ut.Core2D.TransformLocalPosition], (speed,tag,position) =>{}
+在所有Entities檔案中 尋找有(MoveSpeedgame)和(MoveWithInput)和(TransformLocalPosition)的component的物件
+game.MoveSpeed :自己創立的component(會放在Components資料夾中),名字叫做MoveSpeed,名字大小寫要一致
+ut.Core2D.TransformLocalPosition :原本就有的屬性用ut.Core2D.來抓取
+(speed,tag,position):可以在函式中使用speed,tag,position等變數
+speed=MoveSpeed.speed
+tag=MoveWithInput.tag
+position=該物件的position屬性
+
+   C(Components):
+   處存script要判斷用,使用的屬性 float,int,boolean...
+
+                        Entity   Component
+this.world.hasComponent(other, game.EnemyTag)  如果other(Entity物件)有EnemyTag(component)回傳true
+
+
+
